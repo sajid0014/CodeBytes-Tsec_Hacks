@@ -21,17 +21,18 @@ router.post('/Addnotes',fetchuser,[
     body('description','list must of of atleast 3 character').isLength({min:3})
 ],async (req,res)=>{
     try{
-    const {name,description,expdate}=req.body;
+    const {name,description,expdate,personalname,number,address}=req.body;
      const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     const notes=new Notes({
-        name,description,expdate,user:req.user.id
+        name,description,expdate,personalname,number,address,user:req.user.id
     })
     //Here we have two ways to send our data first is create method which we used in auth and now this by creating new constructor and savenotes.
     const saveNotes=await notes.save()
     res.json(notes)
+    console.log(notes)
 }catch(error){
     console.error(error.message);
     res.status(500).send("Internal server error Ocuured");

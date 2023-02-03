@@ -43,7 +43,7 @@ router.post('/Createuser',[//here we are sending our necessity like password sho
     //   .then(user => res.json(user))
     //   .catch(err=>console.log("error"));
     success=true;
-    res.json({success,authtoken})
+    res.json({success,authtoken,user})
     }catch(error){
       console.error(error.message);
       res.status(500).send("Some error Ocuured");
@@ -81,7 +81,8 @@ router.post('/login',[//here we are sending our necessity like password should b
     }
     const authtoken=jwt.sign(data,JWT_SECRET);
     success=true;
-    res.json({success,authtoken})
+    res.json({success,authtoken,user})
+    console.log(user.name)
     
   }catch(error){
   console.error(error.message);

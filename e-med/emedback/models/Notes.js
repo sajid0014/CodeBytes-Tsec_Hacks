@@ -17,6 +17,17 @@ const NotesSchema=new Schema({
         type:String,
         required:true,
     },
+    personalname:{
+        type:String,
+        required:true
+    },
+    number:{
+        type:String,
+        required:true
+    },
+    address:{
+        type:String
+    }
 
 })
 const Notes=mongoose.model('Notes',NotesSchema)

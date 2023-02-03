@@ -13,6 +13,7 @@ const NgoSchema=new Schema({
         required:true,
         type:Number,
     },
+    
 
 })
 const Ngo=mongoose.model('ngo',NgoSchema)

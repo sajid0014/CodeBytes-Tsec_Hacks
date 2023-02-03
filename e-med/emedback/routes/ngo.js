@@ -4,11 +4,16 @@ const router=express.Router()
 const fetchuser=require('../middleware/fetchuser')
 const { body, validationResult } = require('express-validator');
 // Route 1:get all the products list
-router.get('/fetchallproducts',fetchuser,async (req,res)=>{
+router.get('/fetchallproducts',async (req,res)=>{
 
     const ngo=await Ngo.find()
     res.json(ngo)
 })
+// router.get('/fetchyourproducts',fetchuser,async (req,res)=>{
+
+//     const ngo=await Ngo.find({user:req.user.id})
+//     res.json(ngo)
+// })
 // Route 2:Add products
 router.post('/Addproducts',fetchuser,[
     body('name','product should be of minimum 3 character').isLength({min:3}),
@@ -65,7 +70,7 @@ router.post('/Addproducts',fetchuser,[
     
 // })
 // Route 4:delete notes
-router.delete('/deletenotes/:id',fetchuser,async (req,res)=>{
+router.delete('/deleteproducts/:id',fetchuser,async (req,res)=>{
     try {
         let ngo=await Ngo.findById(req.params.id)//check if notes exist or not
     if(!ngo)
